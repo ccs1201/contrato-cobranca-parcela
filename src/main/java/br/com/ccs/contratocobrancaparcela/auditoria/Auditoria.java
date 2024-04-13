@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 public class Auditoria {
 
     public static void registrarAuditoria(String operacao, LocalDateTime dataHora, String id, Object object) {
-        // Implemente aqui a lógica para registrar a auditoria
         log.info("Operação: " + operacao + ", Data/Hora: " + dataHora + ", Class Type: " + object.getClass().getSimpleName() + ", id: " + id);
     }
 }
