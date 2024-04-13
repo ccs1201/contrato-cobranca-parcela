@@ -11,6 +11,7 @@ public class AuditoriaContratoListener {
     @PrePersist
     public void prePersist(Contrato contrato) {
         // Chamada para registrar a auditoria
-        Auditoria.registrarAuditoria("INSERT", LocalDateTime.now(), contrato.getId().toString(), contrato);
+        Auditoria.registrarAuditoria("INSERT",
+                LocalDateTime.now(), contrato.getId().toString(), contrato);
     }
 }
