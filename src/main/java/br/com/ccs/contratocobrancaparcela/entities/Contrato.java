@@ -1,5 +1,6 @@
 package br.com.ccs.contratocobrancaparcela.entities;
 
+import br.com.ccs.contratocobrancaparcela.entities.listeners.AuditoriaContratoListener;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Data
+@EntityListeners(AuditoriaContratoListener.class)
 public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

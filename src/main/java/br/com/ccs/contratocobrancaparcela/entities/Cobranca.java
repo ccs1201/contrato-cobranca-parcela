@@ -1,6 +1,5 @@
 package br.com.ccs.contratocobrancaparcela.entities;
 
-import br.com.ccs.contratocobrancaparcela.entities.listeners.AuditoriaListener;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +11,6 @@ import java.util.UUID;
 
 @Entity
 @Data
-@EntityListeners(AuditoriaListener.class)
 public class Cobranca {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
