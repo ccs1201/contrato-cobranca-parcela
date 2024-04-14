@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class AuditoriaContratoListener {
 
     @PostPersist
-    public void prePersist(Contrato contrato) {
+    public void postPersist(Contrato contrato) {
         Auditoria.registrarAuditoria("INSERT",
                 LocalDateTime.now(), contrato.getId().toString(), contrato);
     }
