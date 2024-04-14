@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -22,12 +23,13 @@ public class ContratoService {
     private ContratoRepository contratoRepository;
     @Autowired
     private ParcelaRepository parcelaRepository;
+    private final Random random = new Random();
 
     @Transactional
     public Contrato criarContrato() {
         try {
             Contrato contrato = new Contrato();
-            contrato.setNumeroParcelas(3);
+            contrato.setNumeroParcelas(random.nextInt(100));
             contrato.setCobranca(new Cobranca());
             contrato.getCobranca().setContrato(contrato);
 
@@ -44,11 +46,13 @@ public class ContratoService {
 
     private void criarParcelas(Contrato contrato) {
 
-        for (int i = 0; i < contrato.getNumeroParcelas(); i++) {
+        var vlrParcela = BigDecimal.valueOf(random.nextInt(1000));
+
+        for (int i = 1; i <= contrato.getNumeroParcelas(); i++) {
 
             Parcela parcela = new Parcela();
             parcela.setNumero(i);
-            parcela.setValor(BigDecimal.TEN);
+            parcela.setValor(vlrParcela);
             parcela.setCobranca(contrato.getCobranca());
             parcela.setContrato(contrato);
             contrato.getCobranca().addParcela(parcela);

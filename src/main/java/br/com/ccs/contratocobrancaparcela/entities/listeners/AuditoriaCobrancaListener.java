@@ -1,16 +1,16 @@
 package br.com.ccs.contratocobrancaparcela.entities.listeners;
 
 import br.com.ccs.contratocobrancaparcela.auditoria.Auditoria;
-import br.com.ccs.contratocobrancaparcela.entities.Contrato;
+import br.com.ccs.contratocobrancaparcela.entities.Cobranca;
 import jakarta.persistence.PostPersist;
 
 import java.time.LocalDateTime;
 
-public class AuditoriaContratoListener {
+public class AuditoriaCobrancaListener {
 
     @PostPersist
-    public void prePersist(Contrato contrato) {
+    public void prePersist(Cobranca cobranca) {
         Auditoria.registrarAuditoria("INSERT",
-                LocalDateTime.now(), contrato.getId().toString(), contrato);
+                LocalDateTime.now(), cobranca.getId().toString(), cobranca);
     }
 }

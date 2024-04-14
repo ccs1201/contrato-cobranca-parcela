@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface ParcelaRepository extends JpaRepository<Parcela, UUID> {
 
-    @Query("SELECT p FROM Parcela p join p.contrato WHERE p.contrato.id = :contratoId")
+    @Query("SELECT p FROM Parcela p join p.contrato WHERE p.contrato.id = :contratoId order by p.numero")
     List<Parcela> findByContratoId(UUID contratoId);
 }
