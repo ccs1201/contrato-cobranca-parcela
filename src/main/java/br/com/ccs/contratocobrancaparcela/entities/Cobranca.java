@@ -1,16 +1,17 @@
 package br.com.ccs.contratocobrancaparcela.entities;
 
+import br.com.ccs.contratocobrancaparcela.entities.listeners.AuditoriaCobrancaListener;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Data
+@EntityListeners(AuditoriaCobrancaListener.class)
 public class Cobranca {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,14 +26,9 @@ public class Cobranca {
     @JoinColumn(name = "cobranca_id")
     private List<Parcela> parcelas;
 
-
-    public void setParcelas(@NotEmpty List<Parcela> parcelas) {
-        this.parcelas = parcelas;
-    }
-
     public void addParcela(@NotNull Parcela parcela) {
         if (this.parcelas == null) {
-            this.parcelas = new ArrayList<>();
+            this.parcelas = new LinkedList<>();
         }
         this.parcelas.add(parcela);
     }
