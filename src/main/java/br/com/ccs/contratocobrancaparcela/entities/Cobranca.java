@@ -3,15 +3,17 @@ package br.com.ccs.contratocobrancaparcela.entities;
 import br.com.ccs.contratocobrancaparcela.entities.listeners.AuditoriaCobrancaListener;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
 @EntityListeners(AuditoriaCobrancaListener.class)
+@Getter
+@Setter
 public class Cobranca {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,8 +24,7 @@ public class Cobranca {
     @NotNull
     private Contrato contrato;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cobranca_id")
+    @OneToMany(mappedBy = "cobranca", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Parcela> parcelas;
 
     public void addParcela(@NotNull Parcela parcela) {
